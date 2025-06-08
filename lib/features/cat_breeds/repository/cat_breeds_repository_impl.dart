@@ -15,7 +15,7 @@ class CatBreedsRepositoryImpl implements CatBreedsRepository {
     try {
       final result = await _api.getCatBreeds(page: page);
       if (result.data.isEmpty) {
-        return []; //TODO: check it again
+        return [];
       } else {
         return result.data.map((e) => CatBreed.fromJson(e.toJson())).toList();
       }

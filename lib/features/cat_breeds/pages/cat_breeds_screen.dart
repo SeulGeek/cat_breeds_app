@@ -10,6 +10,18 @@ class CatBreedsScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return ref.watch(catBreedsProvider(page: 1)).when(
       data: (catBreeds) {
+        if (catBreeds.isEmpty) {
+          return Scaffold(
+            appBar: AppBar(
+              title: const Text('Cat Breeds',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.white)),
+              centerTitle: true,
+              backgroundColor: Colors.deepPurple,
+            ),
+            body: const Center(child: Text('No cat breeds available.')),
+          );
+        }
         // TODO: Scaffold should be moved to the top level widget
         return Scaffold(
           appBar: AppBar(
