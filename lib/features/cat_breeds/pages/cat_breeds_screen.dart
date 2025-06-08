@@ -8,28 +8,55 @@ class CatBreedsScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // NOTES: Pagination is not implemented in this example because of the requirement
     return ref.watch(catBreedsProvider(page: 1)).when(
       data: (catBreeds) {
         // TODO: Scaffold should be moved to the top level widget
         return Scaffold(
           appBar: AppBar(
-            title: const Text('Cat Breeds'),
+            title: const Text('Cat Breeds',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold, color: Colors.white)),
+            centerTitle: true,
+            backgroundColor: Colors.deepPurple,
           ),
           body: ListView.builder(
             itemCount: 10,
             itemBuilder: (context, index) {
               final catBreed = catBreeds[index];
-              return ListTile(
-                title: Text(catBreed.breed),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => CatBreedDetailScreen(catBreed: catBreed),
+              return Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: Card(
+                  elevation: 3,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: ListTile(
+                    contentPadding: const EdgeInsets.all(16),
+                    leading: ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: const Icon(Icons.pets, size: 40),
                     ),
-                  );
-                },
+                    title: Text(
+                      catBreed.breed,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                    trailing:
+                        const Icon(Icons.arrow_forward_ios_rounded, size: 18),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) =>
+                              CatBreedDetailScreen(catBreed: catBreed),
+                        ),
+                      );
+                    },
+                  ),
+                ),
               );
             },
           ),
