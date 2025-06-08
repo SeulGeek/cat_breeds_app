@@ -1,8 +1,13 @@
+import 'package:cat_breeds_app/features/cat_breeds/model/cat_breed.dart';
 import 'package:flutter/material.dart';
 
 class CatBreedDetailScreen extends StatelessWidget {
-  const CatBreedDetailScreen({super.key});
+  const CatBreedDetailScreen({
+    super.key,
+    required this.catBreed,
+  });
 
+  final CatBreed catBreed;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
