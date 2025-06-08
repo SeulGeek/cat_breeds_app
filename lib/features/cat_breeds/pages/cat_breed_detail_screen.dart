@@ -10,15 +10,23 @@ class CatBreedDetailScreen extends StatelessWidget {
 
   final CatBreed catBreed;
 
+  static const unknown = 'Unknown';
+
   @override
   Widget build(BuildContext context) {
-    const unknown = 'Unknown';
+    final details = [
+      _DetailItem('Breed', catBreed.breed),
+      _DetailItem('Country', catBreed.country),
+      _DetailItem('Origin', catBreed.origin),
+      _DetailItem('Coat', catBreed.coat),
+      _DetailItem('Pattern', catBreed.pattern),
+    ];
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          catBreed.breed,
-          style: const TextStyle(
+        title: const Text(
+          'Cat Breed Detail',
+          style: TextStyle(
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
@@ -26,10 +34,7 @@ class CatBreedDetailScreen extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.deepPurple,
         leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.white,
-          ),
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),
@@ -41,7 +46,8 @@ class CatBreedDetailScreen extends StatelessWidget {
               Card(
                 elevation: 8,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(Spacing.sp24)),
+                  borderRadius: BorderRadius.circular(Spacing.sp24),
+                ),
                 child: Padding(
                   padding: const EdgeInsets.all(Spacing.sp24),
                   child: Column(
@@ -59,34 +65,19 @@ class CatBreedDetailScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: Spacing.sp24),
-                      _catBreedDetails(
-                        'Breed',
-                        catBreed.breed.isNotEmpty ? catBreed.breed : unknown,
-                      ),
-                      const Divider(),
-                      _catBreedDetails(
-                        'Country',
-                        catBreed.country.isNotEmpty
-                            ? catBreed.country
-                            : unknown,
-                      ),
-                      const Divider(),
-                      _catBreedDetails(
-                        'Origin',
-                        catBreed.origin.isNotEmpty ? catBreed.origin : unknown,
-                      ),
-                      const Divider(),
-                      _catBreedDetails(
-                        'Coat',
-                        catBreed.coat.isNotEmpty ? catBreed.coat : unknown,
-                      ),
-                      const Divider(),
-                      _catBreedDetails(
-                        'Pattern',
-                        catBreed.pattern.isNotEmpty
-                            ? catBreed.pattern
-                            : unknown,
-                      ),
+                      ...List.generate(details.length, (i) {
+                        final item = details[i];
+                        return Column(
+                          children: [
+                            CatBreedDetailRow(
+                              title: item.title,
+                              value:
+                                  item.value.isNotEmpty ? item.value : unknown,
+                            ),
+                            if (i != details.length - 1) const Divider(),
+                          ],
+                        );
+                      }),
                     ],
                   ),
                 ),
@@ -94,7 +85,7 @@ class CatBreedDetailScreen extends StatelessWidget {
               const SizedBox(height: Spacing.sp32),
               SizedBox(
                 width: double.infinity,
-                child: ElevatedButton.icon(
+                child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.deepPurple,
                     foregroundColor: Colors.white,
@@ -103,11 +94,11 @@ class CatBreedDetailScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(Spacing.sp16),
                     ),
                   ),
-                  label: const Text(
+                  onPressed: () => Navigator.of(context).pop(),
+                  child: const Text(
                     'Back',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                  onPressed: () => Navigator.of(context).pop(),
                 ),
               ),
             ],
@@ -117,8 +108,20 @@ class CatBreedDetailScreen extends StatelessWidget {
       backgroundColor: Colors.deepPurple[50],
     );
   }
+}
 
-  Widget _catBreedDetails(String title, String value) {
+class CatBreedDetailRow extends StatelessWidget {
+  final String title;
+  final String value;
+
+  const CatBreedDetailRow({
+    super.key,
+    required this.title,
+    required this.value,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: Spacing.sp8),
       child: Row(
@@ -142,4 +145,11 @@ class CatBreedDetailScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+class _DetailItem {
+  final String title;
+  final String value;
+
+  const _DetailItem(this.title, this.value);
 }
