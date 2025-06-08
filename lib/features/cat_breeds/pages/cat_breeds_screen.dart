@@ -3,6 +3,7 @@ import 'package:cat_breeds_app/features/cat_breeds/state/cat_breeds_provider.dar
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:logger/web.dart';
+import 'package:cat_breeds_app/theme/spacing.dart';
 
 class CatBreedsScreen extends HookConsumerWidget {
   const CatBreedsScreen({super.key});
@@ -19,26 +20,29 @@ class CatBreedsScreen extends HookConsumerWidget {
           itemBuilder: (context, index) {
             final catBreed = catBreeds[index];
             return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              padding: const EdgeInsets.symmetric(
+                horizontal: Spacing.sp16,
+                vertical: Spacing.sp8,
+              ),
               child: Card(
                 elevation: 3,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(Spacing.sp16),
                 ),
                 child: ListTile(
-                  contentPadding: const EdgeInsets.all(16),
+                  contentPadding: const EdgeInsets.all(Spacing.sp16),
                   leading: ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(Spacing.sp12),
                     child: Container(
-                      width: 40,
-                      height: 40,
+                      width: Spacing.sp40,
+                      height: Spacing.sp40,
                       color: Colors.deepPurple.shade100,
                       alignment: Alignment.center,
                       child: Text(
                         '${index + 1}',
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 20,
+                          fontSize: Spacing.sp20,
                           color: Colors.deepPurple,
                         ),
                       ),
@@ -48,11 +52,11 @@ class CatBreedsScreen extends HookConsumerWidget {
                     catBreed.breed,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 18,
+                      fontSize: Spacing.sp18,
                     ),
                   ),
                   trailing:
-                      const Icon(Icons.arrow_forward_ios_rounded, size: 18),
+                      const Icon(Icons.arrow_forward_ios_rounded, size: Spacing.sp18),
                   onTap: () {
                     Navigator.push(
                       context,
@@ -73,12 +77,12 @@ class CatBreedsScreen extends HookConsumerWidget {
             error: error, stackTrace: stackTrace);
         return Center(
           child: Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(Spacing.sp16),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 const Text('Please try again in a moment.'),
-                const SizedBox(height: 16),
+                const SizedBox(height: Spacing.sp16),
                 ElevatedButton.icon(
                   icon: const Icon(Icons.refresh),
                   label: const Text('Retry'),

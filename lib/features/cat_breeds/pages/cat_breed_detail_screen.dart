@@ -1,5 +1,6 @@
 import 'package:cat_breeds_app/features/cat_breeds/model/cat_breed.dart';
 import 'package:flutter/material.dart';
+import 'package:cat_breeds_app/theme/spacing.dart';
 
 class CatBreedDetailScreen extends StatelessWidget {
   const CatBreedDetailScreen({
@@ -34,30 +35,30 @@ class CatBreedDetailScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(24.0),
+          padding: const EdgeInsets.all(Spacing.sp24),
           child: Column(
             children: [
               Card(
                 elevation: 8,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(24)),
+                    borderRadius: BorderRadius.circular(Spacing.sp24)),
                 child: Padding(
-                  padding: const EdgeInsets.all(24.0),
+                  padding: const EdgeInsets.all(Spacing.sp24),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Center(
                         child: CircleAvatar(
-                          radius: 48,
+                          radius: Spacing.sp48,
                           backgroundColor: Colors.deepPurple[100],
                           child: const Icon(
                             Icons.pets,
-                            size: 48,
+                            size: Spacing.sp48,
                             color: Colors.deepPurple,
                           ),
                         ),
                       ),
-                      const SizedBox(height: 24),
+                      const SizedBox(height: Spacing.sp24),
                       _catBreedDetails(
                         'Breed',
                         catBreed.breed.isNotEmpty ? catBreed.breed : unknown,
@@ -90,16 +91,16 @@ class CatBreedDetailScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 32),
+              const SizedBox(height: Spacing.sp32),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.deepPurple,
                     foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    padding: const EdgeInsets.symmetric(vertical: Spacing.sp16),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
+                      borderRadius: BorderRadius.circular(Spacing.sp16),
                     ),
                   ),
                   label: const Text(
@@ -119,7 +120,7 @@ class CatBreedDetailScreen extends StatelessWidget {
 
   Widget _catBreedDetails(String title, String value) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      padding: const EdgeInsets.symmetric(vertical: Spacing.sp8),
       child: Row(
         children: [
           Text(
@@ -130,7 +131,7 @@ class CatBreedDetailScreen extends StatelessWidget {
               color: Colors.deepPurple,
             ),
           ),
-          const SizedBox(width: 12),
+          const SizedBox(width: Spacing.sp12),
           Expanded(
             child: Text(
               value,
