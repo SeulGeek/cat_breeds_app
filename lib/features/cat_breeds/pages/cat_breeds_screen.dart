@@ -47,7 +47,20 @@ class CatBreedsScreen extends HookConsumerWidget {
                     contentPadding: const EdgeInsets.all(16),
                     leading: ClipRRect(
                       borderRadius: BorderRadius.circular(12),
-                      child: const Icon(Icons.pets, size: 40),
+                      child: Container(
+                        width: 40,
+                        height: 40,
+                        color: Colors.deepPurple.shade100,
+                        alignment: Alignment.center,
+                        child: Text(
+                          '${index + 1}',
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Colors.deepPurple,
+                          ),
+                        ),
+                      ),
                     ),
                     title: Text(
                       catBreed.breed,
