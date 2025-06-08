@@ -1,4 +1,4 @@
-import 'package:cat_breeds_app/features/cat_breeds/pages/cat_breed_detail_screen.dart';
+import 'package:cat_breeds_app/features/cat_breed_detail/pages/cat_breed_detail_screen.dart';
 import 'package:cat_breeds_app/features/cat_breeds/state/cat_breeds_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
