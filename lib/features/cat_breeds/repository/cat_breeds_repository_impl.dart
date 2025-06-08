@@ -17,7 +17,10 @@ class CatBreedsRepositoryImpl implements CatBreedsRepository {
       if (result.data.isEmpty) {
         return [];
       } else {
-        return result.data.map((e) => CatBreed.fromJson(e.toJson())).toList();
+        return result.data
+            .take(10)
+            .map((e) => CatBreed.fromJson(e.toJson()))
+            .toList();
       }
     } on DioException catch (e) {
       final error = e.error;

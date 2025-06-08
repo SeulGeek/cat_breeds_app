@@ -16,7 +16,7 @@ class CatBreedsScreen extends HookConsumerWidget {
           return const Center(child: Text('No cat breeds available.'));
         }
         return ListView.builder(
-          itemCount: 10,
+          itemCount: catBreeds.length,
           itemBuilder: (context, index) {
             final catBreed = catBreeds[index];
             return Padding(
